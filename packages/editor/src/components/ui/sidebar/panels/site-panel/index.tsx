@@ -1046,42 +1046,7 @@ const LayerToggle = memo(function LayerToggle() {
         </div>
       </button>
 
-      <button
-        className={cn(
-          'relative flex flex-1 cursor-pointer flex-col items-center justify-center rounded-md py-2 font-medium text-[10px] transition-all duration-200',
-          activeTab === 'zones'
-            ? 'text-foreground'
-            : 'text-muted-foreground hover:bg-white/5 hover:text-foreground',
-        )}
-        onClick={() => {
-          setPhase('structure')
-          setStructureLayer('zones')
-        }}
-      >
-        {activeTab === 'zones' && (
-          <motion.div
-            className="absolute inset-0 rounded-md bg-[#3e3e3e] shadow-sm ring-1 ring-border/50"
-            layoutId="layerToggleActiveBg"
-            transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
-          />
-        )}
-        <div className="relative z-10 flex flex-col items-center">
-          <img
-            alt="Zones"
-            className={cn(
-              'mb-1 h-6 w-6 transition-all',
-              activeTab !== 'zones' && 'opacity-50 grayscale',
-            )}
-            src="/icons/kitchen.png"
-          />
-          Zones
-        </div>
-        <div className="absolute right-1.5 bottom-1 z-10 rounded border border-border/40 bg-background/40 px-1 py-[2px] backdrop-blur-md">
-          <span className="block font-medium font-mono text-[9px] text-muted-foreground/70 leading-none">
-            Z
-          </span>
-        </div>
-      </button>
+      {/* Zones tab removed from the BAS floor-plan workflow. */}
     </div>
   )
 })

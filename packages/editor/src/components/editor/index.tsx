@@ -64,10 +64,8 @@ import { FloorplanPanel } from './floorplan-panel'
 import { Grid } from './grid'
 import { PresetThumbnailGenerator } from './preset-thumbnail-generator'
 import { SelectionManager } from './selection-manager'
-import { SiteEdgeLabels } from './site-edge-labels'
 import { SnapshotCaptureOverlay } from './snapshot-capture-overlay'
 import { type SnapshotCameraData, ThumbnailGenerator } from './thumbnail-generator'
-import { WallMeasurementLabel } from './wall-measurement-label'
 import { WallMoveSideHandles } from './wall-move-side-handles'
 
 const CAMERA_CONTROLS_HINT_DISMISSED_STORAGE_KEY = 'editor-camera-controls-hint-dismissed:v1'
@@ -591,7 +589,7 @@ const ViewerSceneContent = memo(function ViewerSceneContent({
       {!(isVersionPreviewMode || isFirstPersonMode) && <WallMoveSideHandles />}
       {!(isVersionPreviewMode || isFirstPersonMode) && <FloatingActionMenu />}
       {!(isVersionPreviewMode || isFirstPersonMode) && <FloatingBuildingActionMenu />}
-      {!isFirstPersonMode && <WallMeasurementLabel />}
+      {/* Wall measurement overlay disabled for the BAS floor-plan workflow. */}
       <ExportManager />
       {isFirstPersonMode ? <ViewerZoneSystem /> : <ZoneSystem />}
       <CeilingSystem />
@@ -606,7 +604,7 @@ const ViewerSceneContent = memo(function ViewerSceneContent({
       <CustomCameraControls />
       <ThumbnailGenerator onThumbnailCapture={onThumbnailCapture} />
       <PresetThumbnailGenerator />
-      {!isFirstPersonMode && <SiteEdgeLabels />}
+      {/* Site edge dimension labels disabled for the BAS floor-plan workflow. */}
       <InteractiveSystem />
     </>
   )

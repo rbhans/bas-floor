@@ -178,7 +178,6 @@ function LevelRow({
               e.stopPropagation()
               dragHandleProps?.onClick?.(e)
             }}
-            aria-label="Drag to reorder"
             ref={dragHandleRef}
             type="button"
           >

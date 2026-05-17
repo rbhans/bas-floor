@@ -310,21 +310,7 @@ export const FenceTool: React.FC = () => {
         />
       </mesh>
 
-      {draftMeasurement && (
-        <>
-          <DraftMeasurementLabel
-            label={draftMeasurement.lengthLabel}
-            position={draftMeasurement.lengthPosition}
-          />
-          {draftMeasurement.angleLabels.map((angleLabel) => (
-            <DraftMeasurementLabel
-              key={angleLabel.id}
-              label={angleLabel.label}
-              position={angleLabel.position}
-            />
-          ))}
-        </>
-      )}
+      {/* Draft measurement overlay disabled for the BAS floor-plan workflow. */}
     </group>
   )
 }

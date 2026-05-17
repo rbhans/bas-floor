@@ -146,11 +146,7 @@ export const SiteRenderer = ({ node }: { node: SiteNode }) => {
         </mesh>
       )}
 
-      {/* Simple boundary line */}
-      {/* @ts-ignore */}
-      <line frustumCulled={false} geometry={lineGeometry} renderOrder={9}>
-        <lineBasicMaterial color="#f59e0b" linewidth={2} opacity={0.6} transparent />
-      </line>
+      {/* Site boundary outline disabled for the BAS floor-plan workflow. */}
     </group>
   )
 }
