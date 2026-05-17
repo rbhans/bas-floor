@@ -178,8 +178,8 @@ function LevelRow({
               e.stopPropagation()
               dragHandleProps?.onClick?.(e)
             }}
+            aria-label="Drag to reorder"
             ref={dragHandleRef}
-            title="Drag to reorder"
             type="button"
           >
             <GripVertical className="h-3.5 w-3.5" />
@@ -188,11 +188,11 @@ function LevelRow({
           <button
             className="flex min-w-0 flex-1 items-center justify-start py-1.5 pr-2 pl-1 font-medium text-xs"
             onClick={onSelect}
+            aria-label={getLevelDisplayLabel(level)}
             onDoubleClick={(e) => {
               e.stopPropagation()
               setIsEditing(true)
             }}
-            title={getLevelDisplayLabel(level)}
             type="button"
           >
             <span className="truncate">{getLevelDisplayLabel(level)}</span>
@@ -518,9 +518,9 @@ export function FloatingLevelSelector() {
           {/* Floating + at top edge */}
           {!draggingLevelId && (
             <button
+              aria-label="Add level above"
               className={cn(addButtonClass, 'top-0 -translate-y-1/2')}
               onClick={handleAddAbove}
-              title="Add level above"
               type="button"
             >
               <Plus className="h-2.5 w-2.5" />
@@ -530,9 +530,9 @@ export function FloatingLevelSelector() {
           {/* Floating + at bottom edge */}
           {!draggingLevelId && (
             <button
+              aria-label="Add level below"
               className={cn(addButtonClass, 'bottom-0 translate-y-1/2')}
               onClick={handleAddBelow}
-              title="Add level below"
               type="button"
             >
               <Plus className="h-2.5 w-2.5" />

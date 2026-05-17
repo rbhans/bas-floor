@@ -37,10 +37,14 @@ import { ViewerCamera } from './viewer-camera'
 function AnimatedBackground({ isDark }: { isDark: boolean }) {
   const targetColor = useMemo(() => new THREE.Color(), [])
   const initialized = useRef(false)
+  const cameraMode = useViewer((state) => state.cameraMode)
 
   useFrame(({ scene }, delta) => {
     const dt = Math.min(delta, 0.1) * 4
-    const targetHex = isDark ? '#1f2433' : '#ffffff'
+    // Plan View uses a slightly tinted background so light wall tops
+    // (default ~#f2f0ed) remain visible from above instead of white-on-white.
+    const lightHex = cameraMode === 'orthographic' ? '#e2e4e8' : '#ffffff'
+    const targetHex = isDark ? '#1f2433' : lightHex
 
     if (!(scene.background && scene.background instanceof THREE.Color)) {
       scene.background = new THREE.Color(targetHex)

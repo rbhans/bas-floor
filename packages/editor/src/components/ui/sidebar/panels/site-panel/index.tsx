@@ -254,7 +254,7 @@ const CameraPopover = memo(function CameraPopover({
             buttonClassName,
           )}
           onClick={(e) => e.stopPropagation()}
-          title="Camera snapshot"
+          aria-label="Camera snapshot"
         >
           <Camera className="h-3.5 w-3.5" />
           {hasCamera && (
@@ -376,7 +376,7 @@ const ReferenceItem = memo(function ReferenceItem({
       <button
         className="z-20 flex h-5 w-5 shrink-0 cursor-pointer items-center justify-center rounded-md text-muted-foreground opacity-0 transition-colors hover:bg-black/5 hover:text-foreground group-hover/ref:opacity-100 dark:hover:bg-white/10"
         onClick={(e) => handleDelete(refNode.id, e)}
-        title="Delete"
+        aria-label="Delete"
       >
         <Trash2 className="h-3 w-3" />
       </button>
@@ -742,7 +742,7 @@ const LevelItem = memo(function LevelItem({
                   : 'text-muted-foreground hover:bg-accent hover:text-foreground',
               )}
               onClick={(e) => e.stopPropagation()}
-              title="Camera snapshot"
+              aria-label="Camera snapshot"
             >
               <Camera className="h-3.5 w-3.5" />
               {level.camera && (
@@ -815,7 +815,7 @@ const LevelItem = memo(function LevelItem({
             <button
               className="flex w-full cursor-pointer items-center gap-2 rounded px-3 py-1.5 text-left text-sm transition-colors hover:bg-accent"
               onClick={() => handleDuplicateLevel()}
-              title="Duplicate level"
+              aria-label="Duplicate level"
             >
               <Copy className="h-3.5 w-3.5" />
               Duplicate
@@ -823,7 +823,7 @@ const LevelItem = memo(function LevelItem({
             <button
               className="flex w-full cursor-pointer items-center gap-2 rounded px-3 py-1.5 text-left text-sm transition-colors hover:bg-accent"
               onClick={() => setDuplicateDialogOpen(true)}
-              title="Duplicate level with options"
+              aria-label="Duplicate level with options"
             >
               <Copy className="h-3.5 w-3.5" />
               Duplicate with options...
@@ -832,7 +832,7 @@ const LevelItem = memo(function LevelItem({
               className="flex w-full items-center gap-2 rounded px-3 py-1.5 text-left text-sm transition-colors enabled:cursor-pointer enabled:hover:bg-accent enabled:hover:text-red-600 disabled:cursor-not-allowed disabled:opacity-50"
               disabled={!canDeleteLevel}
               onClick={() => deleteLevelWithFallbackSelection(level.id)}
-              title={canDeleteLevel ? 'Delete level' : 'The ground level cannot be deleted'}
+              aria-label={canDeleteLevel ? 'Delete level' : 'The ground level cannot be deleted'}
             >
               <Trash2 className="h-3.5 w-3.5" />
               Delete
@@ -1183,7 +1183,7 @@ const ZoneItem = memo(function ZoneItem({ zone, isLast }: { zone: ZoneNode; isLa
             <button
               className="relative flex h-6 w-6 cursor-pointer items-center justify-center rounded-md text-muted-foreground opacity-0 transition-colors hover:bg-black/5 hover:text-foreground group-hover/row:opacity-100 dark:hover:bg-white/10"
               onClick={(e) => e.stopPropagation()}
-              title="Camera snapshot"
+              aria-label="Camera snapshot"
             >
               <Camera className="h-3 w-3" />
               {zone.camera && (
@@ -1262,7 +1262,7 @@ const MultiSelectionBadge = memo(function MultiSelectionBadge() {
         <button
           className="cursor-pointer rounded-full p-1.5 transition-colors hover:bg-primary-foreground/20"
           onClick={() => setSelection({ selectedIds: [] })}
-          title="Clear selection"
+          aria-label="Clear selection"
         >
           <X className="h-4 w-4" />
         </button>
@@ -1430,7 +1430,7 @@ const BuildingItem = memo(function BuildingItem({
                   : 'text-muted-foreground hover:bg-accent hover:text-foreground',
               )}
               onClick={(e) => e.stopPropagation()}
-              title="Camera snapshot"
+              aria-label="Camera snapshot"
             >
               <Camera className="h-4 w-4" />
               {building.camera && (

@@ -55,9 +55,9 @@ function ZoneItem({ zone }: { zone: ZoneNode }) {
       <Popover onOpenChange={setCameraPopoverOpen} open={cameraPopoverOpen}>
         <PopoverTrigger asChild>
           <button
+            aria-label="Camera snapshot"
             className="relative flex h-6 w-6 cursor-pointer items-center justify-center rounded-md text-muted-foreground opacity-0 transition-colors hover:bg-black/5 hover:text-foreground group-hover/row:opacity-100 dark:hover:bg-white/10"
             onClick={(e) => e.stopPropagation()}
-            title="Camera snapshot"
           >
             <Camera className="h-3 w-3" />
             {zone.camera && (
