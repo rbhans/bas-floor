@@ -18,6 +18,10 @@ export type ToolConfig = {
   catalogCategory?: CatalogCategory
 }
 
+// Tools hidden from the v1 floor-plan UI. Code/registrations are left intact so
+// stripping can happen later when the underlying node types are no longer in use.
+const HIDDEN_TOOLS = new Set<StructureTool>(['roof', 'stair', 'zone'])
+
 export const tools: ToolConfig[] = [
   { id: 'wall', iconSrc: '/icons/wall.png', label: 'Wall' },
   // { id: 'room', iconSrc: '/icons/room.png', label: 'Room' },
@@ -48,7 +52,7 @@ export function StructureTools() {
   const visibleTools =
     structureLayer === 'zones'
       ? tools.filter((t) => t.id === 'zone')
-      : tools.filter((t) => t.id !== 'zone')
+      : tools.filter((t) => t.id !== 'zone' && !HIDDEN_TOOLS.has(t.id))
 
   const hasActiveTool = visibleTools.some(
     (t) =>

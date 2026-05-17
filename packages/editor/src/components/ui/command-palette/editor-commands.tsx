@@ -388,22 +388,18 @@ export function EditorCommands() {
         keywords: ['share', 'copy', 'url', 'link'],
         execute: () => run(() => navigator.clipboard.writeText(window.location.href)),
       },
-      {
-        id: 'editor.export.screenshot',
-        label: 'Take Screenshot',
-        group: 'Export & Share',
-        icon: <Camera className="h-4 w-4" />,
-        keywords: ['screenshot', 'capture', 'image', 'photo', 'png'],
-        execute: () =>
-          run(() => {
-            const canvas = document.querySelector('canvas')
-            if (!canvas) return
-            Object.assign(document.createElement('a'), {
-              href: canvas.toDataURL('image/png'),
-              download: `screenshot_${new Date().toISOString().split('T')[0]}.png`,
-            }).click()
-          }),
-      },
+      ...(exportScene
+        ? [
+            {
+              id: 'editor.export.screenshot',
+              label: 'Export PNG (viewport)',
+              group: 'Export & Share',
+              icon: <Camera className="h-4 w-4" />,
+              keywords: ['screenshot', 'capture', 'image', 'photo', 'png', 'export'],
+              execute: () => run(() => exportScene('png')),
+            },
+          ]
+        : []),
     ])
   }, [
     register,

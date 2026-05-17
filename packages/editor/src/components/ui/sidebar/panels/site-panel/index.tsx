@@ -436,13 +436,14 @@ const LevelReferences = memo(function LevelReferences({
     const isScan =
       file.name.toLowerCase().endsWith('.glb') || file.name.toLowerCase().endsWith('.gltf')
     const isImage = file.type.startsWith('image/')
+    const isPdf = file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf')
     const type = isScan ? 'scan' : 'guide'
 
-    if (!(isScan || isImage)) {
+    if (!(isScan || isImage || isPdf)) {
       useUploadStore.getState().startUpload(levelId, type, file.name)
       useUploadStore
         .getState()
-        .setError(levelId, 'Invalid file type. Please upload a .glb/.gltf scan or an image.')
+        .setError(levelId, 'Invalid file type. Please upload a .glb/.gltf scan, an image, or a PDF.')
       return
     }
 
@@ -457,7 +458,7 @@ const LevelReferences = memo(function LevelReferences({
       return
     }
 
-    if (isImage) {
+    if (isImage || isPdf) {
       useUploadStore.getState().startUpload(levelId, 'guide', file.name)
       useUploadStore.getState().setStatus(levelId, 'uploading')
 
@@ -547,7 +548,7 @@ const LevelReferences = memo(function LevelReferences({
               </button>
 
               <input
-                accept=".glb,.gltf,image/jpeg,image/png,image/webp,image/gif"
+                accept=".glb,.gltf,image/jpeg,image/png,image/webp,image/gif,application/pdf,.pdf"
                 className="hidden"
                 onChange={handleAddAsset}
                 ref={scanInputRef}

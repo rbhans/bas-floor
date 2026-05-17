@@ -65,8 +65,8 @@ type ViewerState = {
   outliner: Outliner // No setter as we will manipulate directly the arrays
 
   // Export functionality
-  exportScene: ((format?: 'glb' | 'stl' | 'obj') => Promise<void>) | null
-  setExportScene: (fn: ((format?: 'glb' | 'stl' | 'obj') => Promise<void>) | null) => void
+  exportScene: ((format?: 'glb' | 'stl' | 'obj' | 'png') => Promise<void>) | null
+  setExportScene: (fn: ((format?: 'glb' | 'stl' | 'obj' | 'png') => Promise<void>) | null) => void
 
   debugColors: boolean
   setDebugColors: (enabled: boolean) => void
@@ -90,7 +90,7 @@ const useViewer = create<ViewerState>()(
       hoveredId: null,
       setHoveredId: (id) => set((state) => (state.hoveredId === id ? state : { hoveredId: id })),
 
-      cameraMode: 'perspective',
+      cameraMode: 'orthographic',
       setCameraMode: (mode) => set({ cameraMode: mode }),
 
       theme: 'light',

@@ -9,6 +9,7 @@ import { BufferGeometry, Float32BufferAttribute } from 'three'
 import { float, mix, positionWorld, smoothstep } from 'three/tsl'
 import { BackSide, FrontSide, type Mesh, MeshBasicNodeMaterial } from 'three/webgpu'
 import { useNodeEvents } from '../../../hooks/use-node-events'
+import useViewer from '../../../store/use-viewer'
 import { NodeRenderer } from '../node-renderer'
 
 function createEmptyGeometry() {
@@ -60,6 +61,7 @@ export const CeilingRenderer = ({ node }: { node: CeilingNode }) => {
   const ref = useRef<Mesh>(null!)
   const placeholderGeometry = useMemo(createEmptyGeometry, [])
   const gridPlaceholderGeometry = useMemo(createEmptyGeometry, [])
+  const cameraMode = useViewer((state) => state.cameraMode)
 
   useRegistry(node.id, 'ceiling', ref)
   const handlers = useNodeEvents(node, 'ceiling')
@@ -86,7 +88,12 @@ export const CeilingRenderer = ({ node }: { node: CeilingNode }) => {
   ])
 
   return (
-    <mesh geometry={placeholderGeometry} material={materials.bottomMaterial} ref={ref}>
+    <mesh
+      geometry={placeholderGeometry}
+      material={materials.bottomMaterial}
+      ref={ref}
+      visible={cameraMode !== 'orthographic'}
+    >
       <mesh
         geometry={gridPlaceholderGeometry}
         material={materials.topMaterial}

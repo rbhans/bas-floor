@@ -31,6 +31,7 @@ export const CustomCameraControls = () => {
   const isFirstPersonMode = useEditor((s) => s.isFirstPersonMode)
   const allowUndergroundCamera = useEditor((s) => s.allowUndergroundCamera)
   const selection = useViewer((s) => s.selection)
+  const cameraMode = useViewer((state) => state.cameraMode)
   const currentLevelId = selection.levelId
   const firstLoad = useRef(true)
   const maxPolarAngle =
@@ -56,11 +57,23 @@ export const CustomCameraControls = () => {
     if (!controls.current) return
     if (firstLoad.current) {
       firstLoad.current = false
-      controls.current.setLookAt(20, 20, 20, 0, 0, 0, true)
+      const isOrtho = useViewer.getState().cameraMode === 'orthographic'
+      if (isOrtho) {
+        controls.current.setLookAt(0, 50, 0, 0, 0, 0, true)
+      } else {
+        controls.current.setLookAt(20, 20, 20, 0, 0, 0, true)
+      }
     }
     controls.current.getTarget(currentTarget)
     controls.current.moveTo(currentTarget.x, targetY, currentTarget.z, true)
   }, [currentLevelId, isPreviewMode])
+
+  useEffect(() => {
+    if (!controls.current || firstLoad.current) return
+    if (cameraMode === 'orthographic') {
+      controls.current.rotatePolarTo(0, true)
+    }
+  }, [cameraMode])
 
   useEffect(() => {
     if (!controls.current) return
@@ -102,7 +115,6 @@ export const CustomCameraControls = () => {
   )
 
   // Configure mouse buttons based on control mode and camera mode
-  const cameraMode = useViewer((state) => state.cameraMode)
   const mouseButtons = useMemo(() => {
     // Use ZOOM for orthographic camera, DOLLY for perspective camera
     const wheelAction =

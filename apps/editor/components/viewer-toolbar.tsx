@@ -281,7 +281,7 @@ function CameraModeToggle() {
   const setCameraMode = useViewer((state) => state.setCameraMode)
 
   return (
-    <ToolbarTooltip label={cameraMode === 'perspective' ? 'Perspective' : 'Orthographic'}>
+    <ToolbarTooltip label={cameraMode === 'perspective' ? 'Perspective' : 'Plan View'}>
       <button
         className={cn(
           TOOLBAR_BTN,

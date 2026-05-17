@@ -48,10 +48,11 @@
     "mitt": "^3.0.1",
     "motion": "^12.34.3",
     "nanoid": "^5.1.6",
+    "pdfjs-dist": "^5.7.284",
     "tailwind-merge": "^3.5.0",
+    "three-mesh-bvh": "~0.9.8",
     "zod": "^4.3.6",
-    "zustand": "^5.0.11",
-    "three-mesh-bvh": "~0.9.8"
+    "zustand": "^5.0.11"
   },
   "devDependencies": {
     "@pascal-app/core": "^0.8.0",

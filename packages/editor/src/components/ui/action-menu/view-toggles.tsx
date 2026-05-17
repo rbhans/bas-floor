@@ -23,7 +23,8 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '../primitives/tooltip'
 import { ActionButton } from './action-button'
 
 const MAX_FILE_SIZE = 200 * 1024 * 1024 // 200MB
-const ACCEPTED_FILE_TYPES = '.glb,.gltf,image/jpeg,image/png,image/webp,image/gif'
+const ACCEPTED_FILE_TYPES =
+  '.glb,.gltf,image/jpeg,image/png,image/webp,image/gif,application/pdf,.pdf'
 const GRID_SNAP_STEPS: GridSnapStep[] = [0.5, 0.25, 0.1, 0.05]
 
 function formatGridSnapStep(step: GridSnapStep) {
@@ -115,12 +116,13 @@ function UploadButton({ onError }: { onError: (message: string | null) => void }
       const isScan =
         file.name.toLowerCase().endsWith('.glb') || file.name.toLowerCase().endsWith('.gltf')
       const isImage = file.type.startsWith('image/')
-      if (!(isScan || isImage)) {
-        onError('Upload a .glb/.gltf scan or an image.')
+      const isPdf = file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf')
+      if (!(isScan || isImage || isPdf)) {
+        onError('Upload a .glb/.gltf scan, an image, or a PDF.')
         return
       }
 
-      if (isImage) {
+      if (isImage || isPdf) {
         setIsAddingGuide(true)
         try {
           const guide = await createLocalGuideImage({ createNode, file, levelId })
