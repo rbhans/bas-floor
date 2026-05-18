@@ -124,29 +124,9 @@ export const SiteRenderer = ({ node }: { node: SiteNode }) => {
         />
       ))}
 
-      {/* Ground fill: site polygon with slab holes, occludes below-grade geometry */}
-      {groundShape && (
-        <mesh position={[0, -0.05, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-          <shapeGeometry args={[groundShape]} />
-          {/* PERF TEST: basic material — no PBR / shadows / lighting calc.
-              Ground color = canvas background, so lighting is invisible work. */}
-          <meshBasicMaterial
-            color={bgColor}
-            polygonOffset={true}
-            polygonOffsetFactor={1}
-            polygonOffsetUnits={1}
-          />
-          {/* <meshStandardMaterial
-            color={bgColor}
-            depthWrite={true}
-            polygonOffset={true}
-            polygonOffsetFactor={1}
-            polygonOffsetUnits={1}
-          /> */}
-        </mesh>
-      )}
-
-      {/* Site boundary outline disabled for the BAS floor-plan workflow. */}
+      {/* Ground fill mesh and site boundary outline disabled for the BAS
+          floor-plan workflow — the site polygon was visible as a tinted
+          square that did not match the Plan View canvas background. */}
     </group>
   )
 }
