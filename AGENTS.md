@@ -49,3 +49,13 @@ Invoke the `review-architecture` skill (`.agents/skills/review-architecture/SKIL
 - After two consecutive tool failures, stop and change approach.
 - Don't introduce backwards-compatibility shims, dead code, or speculative abstractions.
 - Don't write new comments unless they explain a non-obvious *why*.
+
+## Project Memory Scaffold
+
+Before meaningful project work, read:
+- `/context/README.md`
+- `/context/PROJECT_OVERVIEW.md`
+- `/context/CURRENT_STATE.md`
+
+Then read only the additional context files relevant to the task. Repo-local Markdown remains the source of truth for implementation. Obsidian notes are supporting context only when vault files, exported notes, links, or pasted context are explicitly available.
+

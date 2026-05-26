@@ -1,0 +1,37 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dev-all",
+      "runtimeExecutable": "bun",
+      "runtimeArgs": ["run", "dev"],
+      "port": 3002,
+      "autoPort": true
+    },
+    {
+      "name": "editor",
+      "runtimeExecutable": "bun",
+      "runtimeArgs": ["x", "turbo", "run", "dev", "--filter=editor"],
+      "port": 3002,
+      "autoPort": true
+    },
+    {
+      "name": "core-watch",
+      "runtimeExecutable": "bun",
+      "runtimeArgs": ["x", "turbo", "run", "dev", "--filter=@pascal-app/core"],
+      "port": 0
+    },
+    {
+      "name": "viewer-watch",
+      "runtimeExecutable": "bun",
+      "runtimeArgs": ["x", "turbo", "run", "dev", "--filter=@pascal-app/viewer"],
+      "port": 0
+    },
+    {
+      "name": "mcp-watch",
+      "runtimeExecutable": "bun",
+      "runtimeArgs": ["x", "turbo", "run", "dev", "--filter=@pascal-app/mcp"],
+      "port": 0
+    }
+  ]
+}
